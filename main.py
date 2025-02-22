@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas
 
 st.set_page_config(layout="wide")
 
@@ -8,7 +9,27 @@ with col1 :
 
 with col2:
     st.title("Aaryan Shrestha")
-    content = """
+    introduction = """
         Hi, I am Aaryan! I am a student currently pursuing a Bachelor's in Information Technology (BIT). I have a keen interest in coding and enjoy expanding my knowledge in this field. In my free time, I like to explore different programming languages and improve my skills, especially in frontend development and Python. Though I am still learning, I am passionate about coding and eager to develop my expertise further. My goal is to keep improving and gain hands-on experience in the tech world.
     """
-    st.info(content)
+    st.info(introduction)
+
+description = """
+        Below you can find some of the apps I have built in Python. Feel free to contact me!
+"""
+st.write(description)
+
+
+# Project Section
+col3, col4 = st.columns(2)
+
+# Converting the data.csv file into a well-structured table using pandas
+df  = pandas.read_csv("data.csv", sep=";")
+
+with col3:
+    for index, row in df[:10].iterrows():
+        st.header(row["title"])
+
+with col4:
+    for index, row in df[10:].iterrows():
+        st.header(row["title"])
